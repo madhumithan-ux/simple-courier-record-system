@@ -1,0 +1,89 @@
+Program Code
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#define MAX 100
+struct Courier {
+int trackingID;
+char sender[50];
+char receiver[50];
+char status[30];
+};
+int main() {
+struct Courier c[MAX];
+int count = 0, choice, i, searchID;
+do {
+printf(&quot;\n--- Courier Record System ---\n&quot;);
+printf(&quot;1. Add Courier Record\n&quot;);
+printf(&quot;2. View All Records\n&quot;);
+printf(&quot;3. Search by Tracking ID\n&quot;);
+printf(&quot;4. Exit\n&quot;);
+printf(&quot;Enter your choice: &quot;);
+scanf(&quot;%d&quot;, &amp;choice);
+switch(choice) {
+case 1:
+printf(&quot;Enter Tracking ID: &quot;);
+scanf(&quot;%d&quot;, &amp;c[count].trackingID);
+printf(&quot;Enter Sender Name: &quot;);
+scanf(&quot;%s&quot;, c[count].sender);
+printf(&quot;Enter Receiver Name: &quot;);
+scanf(&quot;%s&quot;, c[count].receiver);
+printf(&quot;Enter Delivery Status: &quot;);
+scanf(&quot;%s&quot;, c[count].status);
+count++;
+printf(&quot;Record Added Successfully!\n&quot;);
+break;
+case 2:
+if(count == 0) {
+printf(&quot;No records found.\n&quot;);
+} else {
+for(i = 0; i &lt; count; i++) {
+printf(&quot;\nTracking ID: %d&quot;, c[i].trackingID);
+printf(&quot;\nSender: %s&quot;, c[i].sender);
+printf(&quot;\nReceiver: %s&quot;, c[i].receiver);
+printf(&quot;\nStatus: %s\n&quot;, c[i].status);
+}
+
+}
+break;
+case 3:
+printf(&quot;Enter Tracking ID to search: &quot;);
+scanf(&quot;%d&quot;, &amp;searchID);
+for(i = 0; i &lt; count; i++) {
+if(c[i].trackingID == searchID) {
+printf(&quot;\nRecord Found!&quot;);
+printf(&quot;\nSender: %s&quot;, c[i].sender);
+printf(&quot;\nReceiver: %s&quot;, c[i].receiver);
+printf(&quot;\nStatus: %s\n&quot;, c[i].status);
+break;
+}
+}
+if(i == count) {
+printf(&quot;Record not found.\n&quot;);
+}
+break;
+case 4:
+printf(&quot;Exiting program...\n&quot;);
+break;
+default:
+printf(&quot;Invalid choice! Try again.\n&quot;);
+}
+} while(choice != 4);
+return 0;
+}
+
+Sample Input / Output
+Input:
+1
+101
+Rahul
+Amit
+Delivered
+2
+4
+Output:
+Record Added Successfully!
+Tracking ID: 101
+Sender: Rahul
+Receiver: Amit
+Status: Delivered
+
